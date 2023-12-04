@@ -1,4 +1,4 @@
-package com.technicjelle;
+package com.technicjelle.bluemap3rdvalidator;
 
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.hocon.HoconConfigurationLoader;

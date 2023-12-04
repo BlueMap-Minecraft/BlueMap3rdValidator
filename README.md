@@ -5,3 +5,10 @@ It checks if the file is valid [HOCON](https://github.com/lightbend/config/blob/
 and if all required fields are present.
 
 Designed to be used in GitHub Actions.
+
+
+## Usage
+
+```bash
+./gradlew run --args="/path/to/BlueMapWiki/"
+```

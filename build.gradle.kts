@@ -1,5 +1,6 @@
 plugins {
 	id("java")
+	application
 }
 
 group = "com.technicjelle"
@@ -14,6 +15,10 @@ dependencies {
 	testImplementation(platform("org.junit:junit-bom:5.9.1"))
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	implementation("org.spongepowered:configurate-hocon:4.2.0-SNAPSHOT")
+}
+
+application {
+	mainClass = "com.technicjelle.bluemap3rdvalidator.Main"
 }
 
 tasks.test {
