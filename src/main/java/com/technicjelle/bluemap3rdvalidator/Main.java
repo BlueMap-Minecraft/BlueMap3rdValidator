@@ -25,9 +25,11 @@ public class Main {
 
 		final Path platformsDir = addonBrowserDir.resolve("platforms");
 		List<String> validPlatforms = getFilesInDirectory(platformsDir);
+		System.out.println("Found these valid platforms: " + validPlatforms);
 
 		final Path linksDir = addonBrowserDir.resolve("links");
 		List<String> validLinkTypes = getFilesInDirectory(linksDir);
+		System.out.println("Found these valid link types: " + validLinkTypes);
 
 		checkAddonsFileValidity(addonBrowserDir, validPlatforms, validLinkTypes);
 	}
