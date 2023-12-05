@@ -1,6 +1,9 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
-	id("java")
+	java
 	application
+	id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "com.technicjelle"
@@ -21,6 +24,20 @@ application {
 	mainClass = "com.technicjelle.bluemap3rdvalidator.Main"
 }
 
-tasks.test {
-	useJUnitPlatform()
+tasks {
+	named<ShadowJar>("shadowJar") {
+		archiveBaseName.set("shadow")
+		mergeServiceFiles()
+		manifest {
+			attributes(mapOf("Main-Class" to "com.technicjelle.bluemap3rdvalidator.Main"))
+		}
+	}
+
+	build {
+		dependsOn(shadowJar)
+	}
+
+	test {
+		useJUnitPlatform()
+	}
 }
