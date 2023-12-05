@@ -50,6 +50,7 @@ public class Main {
 
 	private static void checkAddonsFileValidity(Path addonBrowserDir, List<String> platformsDir, List<String> validLinkTypes) throws IOException {
 		final Path confFile = addonBrowserDir.resolve("addons.conf");
+		boolean valid = true;
 		System.out.println("Checking validity of addons in " + confFile);
 
 		// AAAAAAAAAAAAAAAAAAAAAAAAAA :notlikethis:
@@ -71,7 +72,16 @@ public class Main {
 				throw new RuntimeException("Failed to parse addon");
 			}
 
-			addon.checkValid(platformsDir, validLinkTypes);
+			if (!addon.validate(platformsDir, validLinkTypes)) {
+				valid = false;
+			}
+		}
+
+		if (valid) {
+			System.out.println("All addons are valid!");
+		} else {
+			System.err.println("Some addons are invalid!");
+			System.exit(1);
 		}
 	}
 }

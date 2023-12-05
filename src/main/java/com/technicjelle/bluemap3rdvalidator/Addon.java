@@ -17,7 +17,7 @@ public class Addon {
 	private ArrayList<String> platforms;
 	private Map<String, String> links;
 
-	public void checkValid(List<String> platformsDir, List<String> validLinkTypes) {
+	public boolean validate(List<String> platformsDir, List<String> validLinkTypes) {
 		boolean valid = true;
 		StringBuilder log = new StringBuilder("Checking validity of addon: " + name);
 
@@ -72,6 +72,8 @@ public class Addon {
 		} else {
 			System.err.println(log);
 		}
+
+		return valid;
 	}
 
 	private static boolean isNullOrEmpty(String s) {
