@@ -26,7 +26,6 @@ application {
 
 tasks {
 	named<ShadowJar>("shadowJar") {
-		archiveBaseName.set("shadow")
 		mergeServiceFiles()
 		manifest {
 			attributes(mapOf("Main-Class" to "com.technicjelle.bluemap3rdvalidator.Main"))
