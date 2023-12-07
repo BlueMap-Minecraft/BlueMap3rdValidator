@@ -37,7 +37,14 @@ public class Addon {
 		}
 
 		if (isNullOrEmpty(apiVersion)) {
-			log.append("\n\t⚠️ API version is not specified. This may be intentional.");
+			if (!platforms.contains("resourcepack")) {
+				log.append("\n\t⚠️ API version is not specified. This may be intentional.");
+			}
+		} else {
+			if (platforms.contains("resourcepack")) {
+				log.append("\n\t🛑 API version should not be specified for resourcepacks.");
+				valid = false;
+			}
 		}
 
 		if (isNullOrEmpty(platforms)) {
