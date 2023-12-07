@@ -9,6 +9,13 @@ Designed to be used in GitHub Actions.
 
 ## Usage
 
+### Just run it once
 ```bash
 ./gradlew run --args="/path/to/BlueMapWiki/"
+```
+
+### Compile and run
+```bash
+./gradlew build
+java -jar ./build/libs/BlueMap3rdValidator-1.0-all.jar "/path/to/BlueMapWiki/"
 ```
