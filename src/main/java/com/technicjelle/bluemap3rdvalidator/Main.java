@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -55,9 +57,26 @@ public class Main {
 		boolean valid = true;
 		System.out.println("Checking validity of addons in " + confFile);
 
+		String contents = Files.readString(confFile);
+
+		// make sure all apostrophes are escaped:
+		final Pattern apostrophePattern = Pattern.compile("(\\\\)?'");
+		final Matcher matcher = apostrophePattern.matcher(contents);
+		while (matcher.find()) {
+			if (matcher.group(1) == null) {
+				System.err.println("Unescaped apostrophe found at character " + matcher.start());
+				System.exit(1);
+			}
+		}
+
+		// remove all apostrophe escapes before we feed it into Configurate, because it rightfully rejects them,
+		//  but the hocon-js library requires them for some reason:
+		contents = contents.replaceAll("\\\\'", "'");
+
 		// AAAAAAAAAAAAAAAAAAAAAAAAAA :notlikethis:
 		// https://github.com/lightbend/config/issues/460
-		String contents = "addons: " + Files.readString(confFile);
+		final String prefix = "addons: ";
+		contents = prefix + contents;
 
 		final ObjectMapper.Factory customFactory = ObjectMapper.factoryBuilder()
 				.defaultNamingScheme(NamingSchemes.PASSTHROUGH)
