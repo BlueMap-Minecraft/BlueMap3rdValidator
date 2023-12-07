@@ -8,6 +8,7 @@ Designed to be used in GitHub Actions.
 
 
 ## Usage
+(Assuming a Linux environment, with a bash (or similar) shell)
 
 ### Just run it once
 ```bash
