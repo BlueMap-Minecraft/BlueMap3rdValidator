@@ -20,7 +20,7 @@ dependencies {
 }
 
 application {
-	mainClass = "com.technicjelle.bluemap3rdvalidator.Main"
+	mainClass.set("com.technicjelle.bluemap3rdvalidator.Main")
 }
 
 tasks {
